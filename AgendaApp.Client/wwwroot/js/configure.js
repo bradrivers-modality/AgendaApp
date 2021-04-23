@@ -6,7 +6,7 @@
             websiteUrl: window.location.origin,
             contentUrl: window.location.origin + "/",
             entityId: "Configure",
-            suggestedDisplayName: "Configure"
+            suggestedDisplayName: "In Meeting Agenda App"
         });
         saveEvent.notifySuccess();
     });

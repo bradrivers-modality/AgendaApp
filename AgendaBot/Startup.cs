@@ -1,5 +1,4 @@
-﻿using AgendaApp.Bot.Bots;
-using AgendaApp.Global;
+﻿using AgendaApp.Global;
 using AgendaApp.Global.Abstract;
 using AgendaApp.Graph;
 using AgendaApp.Graph.Abstract;
@@ -13,7 +12,6 @@ using Microsoft.Bot.Connector.Authentication;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.IdentityModel.Tokens;
 
 namespace AgendaApp.Bot
 {
@@ -57,6 +55,7 @@ namespace AgendaApp.Bot
             services.AddSingleton<IGraphClient, GraphClient>();
             services.AddSingleton<IAuthenticationClient, AuthenticationClient>();
             services.AddSingleton<ISettingsRepository, SettingsRepository>();
+            services.AddSingleton<IAgendaItemRepository, AgendaItemRepository>();
 
             services.AddCors(options =>
             {
