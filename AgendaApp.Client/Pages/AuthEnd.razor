@@ -1,0 +1,12 @@
+﻿@page "/authEnd"
+@inject IJSRuntime JS
+
+<h3>AuthEnd</h3>
+
+@code {
+    protected override void OnInitialized()
+    {
+        JS.InvokeAsync<string>("AuthEnd");
+        base.OnInitialized();
+    }
+}

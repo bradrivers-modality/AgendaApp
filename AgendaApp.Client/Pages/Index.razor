@@ -1,0 +1,41 @@
+﻿@page "/"
+@using Flurl.Http
+@inject Blazored.LocalStorage.ILocalStorageService LocalStorage
+@inject IJSRuntime JS
+
+<h1>Hello, world!</h1>
+
+Welcome to your new app.
+
+@*<SurveyPrompt Title="How is Blazor working for you?" />*@
+
+<div id="divError" style="display: none"></div>
+<button onclick="requestConsent()" id="consent" style="display:none;">Authenticate</button>
+<div id="divGraphProfile" style="display: none"></div>
+
+<button class="btn btn-primary" @onclick="CallGraphAsync">Call Graph</button>
+<button class="btn btn-primary" @onclick="GetContext">Get Context</button>
+
+@code
+{
+    private async Task CallGraphAsync()
+    {
+        var token = await LocalStorage.GetItemAsync<string>("access_token");
+
+        Console.WriteLine("_________________________________________");
+        Console.WriteLine("access token");
+        Console.WriteLine(token);
+
+        var result = await $"http://localhost:3978/api/user/GetSignedInUser"
+            .WithOAuthBearerToken(token)
+            .GetJsonAsync<object>();
+
+        Console.WriteLine("_________________________________________");
+        Console.WriteLine(result.ToString());
+    }
+
+    private void GetContext()
+    {
+        JS.InvokeAsync<string>("GetContext");
+    }
+}

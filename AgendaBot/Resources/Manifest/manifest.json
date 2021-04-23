@@ -1,0 +1,74 @@
+{
+  "$schema": "https://raw.githubusercontent.com/OfficeDev/microsoft-teams-app-schema/preview/DevPreview/MicrosoftTeams.schema.json",
+  "manifestVersion": "devPreview",
+  "version": "1.0.0",
+  "id": "3ea45685-9d55-43a2-818b-bd9c4f7f38eb",
+  "packageName": "com.microsoft.teams.sample.agendaapp",
+  "webApplicationInfo": {
+    "id": "3ea45685-9d55-43a2-818b-bd9c4f7f38eb",
+    "resource": "api://brivers.ngrok.io/3ea45685-9d55-43a2-818b-bd9c4f7f38eb"
+  },
+  "developer": {
+    "name": "Modality Systems Ltd.",
+    "websiteUrl": "https://www.modalitysystems.com/",
+    "privacyUrl": "https://www.modalitysystems.com/privacy",
+    "termsOfUseUrl": "https://www.modalitysystems.com/terms-and-conditions"
+  },
+  "name": {
+    "short": "Agenda App"
+  },
+  "description": {
+    "short": "Agenda App",
+    "full": "In Meeting team app, to keep track of the Agenda" 
+  },
+  "icons": {
+    "outline": "icon-outline.png",
+    "color": "icon-color.png"
+  },
+  "accentColor": "#ffffff",
+  "configurableTabs": [
+    {
+      "configurationUrl": "https://brivers.ngrok.io/configure",
+      "canUpdateConfiguration": true,
+      "scopes": [
+        "groupchat"
+      ],
+      "context": [
+        "meetingChatTab",
+        "meetingDetailsTab",
+        "meetingSidePanel"
+      ]
+    }
+  ],
+  "permissions": [
+    "identity",
+    "messageTeamMembers"
+  ],
+  "validDomains": [
+    "brivers.ngrok.io"
+  ],
+  "bots": [
+    {
+      "botId": "3ea45685-9d55-43a2-818b-bd9c4f7f38eb",
+      "scopes": [
+        "groupchat"
+      ],
+      "needsChannelSelector": false,
+      "isNotificationOnly": false,
+      "supportsFiles": false,
+      "commandLists": [
+        {
+          "scopes": [
+            "groupchat"
+          ],
+          "commands": [
+            {
+              "title": "reset",
+              "description": "reset the settings for the bot in the service"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+﻿@page "/authStart"
+@inject IJSRuntime JS
+
+<h3>AuthStart</h3>
+
+@code {
+    protected override void OnInitialized()
+    {
+        JS.InvokeAsync<string>("AuthStart");
+        base.OnInitialized();
+    }
+}
