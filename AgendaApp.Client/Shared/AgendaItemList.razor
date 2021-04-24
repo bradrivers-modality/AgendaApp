@@ -1,0 +1,44 @@
+﻿@using AgendaApp.Models
+@using Flurl.Http
+@inject Blazored.LocalStorage.ILocalStorageService LocalStorage
+
+<div class="list-group">
+    @{
+        if (_agendaItems == null)
+        {
+            "Loading agenda items..."
+        }
+        else
+        {
+            foreach (var agendaItem in _agendaItems)
+            {
+                <div class="list-group-item list-group-item-action flex-column align-items-start">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1">@agendaItem.Name</h5>
+                        <small>@agendaItem.Duration.Minutes.ToString() minutes</small>
+                    </div>
+                    <p class="mb-1">@agendaItem.UserName</p>
+                    @*<small>Donec id elit non mi porta.</small>*@
+                </div>
+            }
+        }
+    }
+
+</div>
+
+@code {
+    private List<AgendaItem> _agendaItems;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var token = await LocalStorage.GetItemAsync<string>("access_token");
+        var result = await $"http://localhost:3978/api/AgendaItem/GetAllForMeeting?meetingId=1"
+            .WithOAuthBearerToken(token)
+            .GetJsonAsync<List<AgendaItem>>();
+
+        _agendaItems = result.OrderBy(i => i.Order).ToList();
+
+        await base.OnInitializedAsync();
+    }
+
+}

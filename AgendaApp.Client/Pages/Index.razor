@@ -1,41 +1,45 @@
 ﻿@page "/"
-@using Flurl.Http
-@inject Blazored.LocalStorage.ILocalStorageService LocalStorage
+@using System.ComponentModel
+@using System.Text
+@using AgendaApp.Models
 @inject IJSRuntime JS
 
-<h1>Hello, world!</h1>
+<Auth />
 
-Welcome to your new app.
+@{
+    if (_microsoftTeamsContext == null)
+    {
+        <p>Loading Teams context...</p>
+    }
+    else if (_microsoftTeamsContext.FrameContext.Equals("sidePanel"))
+    {
+        <SidePanel/>
+    }
+    else
+    {
+        <ContentPanel/>
+    }
+}
 
-@*<SurveyPrompt Title="How is Blazor working for you?" />*@
-
-<div id="divError" style="display: none"></div>
-<button onclick="requestConsent()" id="consent" style="display:none;">Authenticate</button>
-<div id="divGraphProfile" style="display: none"></div>
-
-<button class="btn btn-primary" @onclick="CallGraphAsync">Call Graph</button>
-<button class="btn btn-primary" @onclick="GetContext">Get Context</button>
+<div class="rawProperties">@_rawMicrosoftTeamsContext</div>
 
 @code
 {
-    private async Task CallGraphAsync()
+    private MicrosoftTeamsContext _microsoftTeamsContext;
+    private string _rawMicrosoftTeamsContext;
+
+    protected override async Task OnInitializedAsync()
     {
-        var token = await LocalStorage.GetItemAsync<string>("access_token");
+        _microsoftTeamsContext = await JS.InvokeAsync<MicrosoftTeamsContext>("GetContext");
 
-        Console.WriteLine("_________________________________________");
-        Console.WriteLine("access token");
-        Console.WriteLine(token);
-
-        var result = await $"http://localhost:3978/api/user/GetSignedInUser"
-            .WithOAuthBearerToken(token)
-            .GetJsonAsync<object>();
-
-        Console.WriteLine("_________________________________________");
-        Console.WriteLine(result.ToString());
+        var microsoftTeamsContext = new StringBuilder();
+        microsoftTeamsContext.AppendLine("microsoftTeamsContext {");
+        foreach (PropertyDescriptor descriptor in TypeDescriptor.GetProperties(_microsoftTeamsContext))
+        {
+            microsoftTeamsContext.AppendLine($"\t {descriptor.Name}: {descriptor.GetValue(_microsoftTeamsContext)}");
+        }
+        
+        _rawMicrosoftTeamsContext = microsoftTeamsContext.ToString();
     }
 
-    private void GetContext()
-    {
-        JS.InvokeAsync<string>("GetContext");
-    }
 }

@@ -5,13 +5,13 @@ VisualStudioVersion = 16.0.30804.86
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AgendaApp.Bot", "AgendaApp.Bot.csproj", "{A7595F49-553A-4E1E-85D6-E337946CF20C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgendaApp.Client", "..\AgendaApp.Client\AgendaApp.Client.csproj", "{7508BCB6-D7F4-4882-AD37-1C21B0469EA9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AgendaApp.Client", "..\AgendaApp.Client\AgendaApp.Client.csproj", "{7508BCB6-D7F4-4882-AD37-1C21B0469EA9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgendaApp.Graph", "..\AgendaApp.Graph\AgendaApp.Graph.csproj", "{8762E83B-EFBE-4753-843F-48BD95202A60}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AgendaApp.Graph", "..\AgendaApp.Graph\AgendaApp.Graph.csproj", "{8762E83B-EFBE-4753-843F-48BD95202A60}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgendaApp.Models", "..\AgendaApp.Models\AgendaApp.Models.csproj", "{899E5C94-4124-42F4-8ECD-9602F72CB025}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AgendaApp.Models", "..\AgendaApp.Models\AgendaApp.Models.csproj", "{899E5C94-4124-42F4-8ECD-9602F72CB025}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgendaApp.Global", "..\AgendaApp.Global\AgendaApp.Global.csproj", "{A43DF2B1-FE35-414D-A1B9-733666638810}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AgendaApp.Global", "..\AgendaApp.Global\AgendaApp.Global.csproj", "{A43DF2B1-FE35-414D-A1B9-733666638810}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

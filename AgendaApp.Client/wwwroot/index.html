@@ -28,16 +28,7 @@
 <script src="/js/auth-start.js"></script>
 <script src="/js/auth-end.js"></script>
 <script src="/js/configure.js"></script>
-<script>
-    function GetContext() {
-        console.log("getContext called");
-
-        microsoftTeams.getContext(function (context) {
-            console.log("meetingId: " + context.meetingId);
-            console.log("frameContext: " + context.frameContext);
-        });
-    }
-</script>
+<script src="/js/teams.js"></script>
 </body>
 
 </html>

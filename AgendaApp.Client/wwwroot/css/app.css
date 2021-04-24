@@ -48,3 +48,8 @@ a, .btn-link {
         right: 0.75rem;
         top: 0.5rem;
     }
+
+.rawProperties {
+    font-size: 0.5rem;
+    white-space: pre-wrap;
+}

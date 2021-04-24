@@ -18,6 +18,7 @@ namespace AgendaApp.Bot.Controllers
             _agendaItemRepository = agendaItemRepository ?? throw new ArgumentNullException(nameof(agendaItemRepository));
         }
 
+        [HttpGet(nameof(GetAllForMeeting))]
         public IActionResult GetAllForMeeting(string meetingId)
         {
             return string.IsNullOrWhiteSpace(meetingId) ? 
@@ -25,6 +26,7 @@ namespace AgendaApp.Bot.Controllers
                 new OkObjectResult(_agendaItemRepository.GetAllForMeeting(meetingId));
         }
 
+        [HttpPost(nameof(Add))]
         public IActionResult Add(AgendaItem agendaItem)
         {
             if (agendaItem == null) return new ObjectResult("No AgendaItem received") { StatusCode = (int)HttpStatusCode.NoContent };
