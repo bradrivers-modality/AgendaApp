@@ -41,21 +41,21 @@ namespace AgendaApp.Bot.Controllers
             _agendaItemRepository.Add(agendaItem);
 
             // TODO: Set start and end times, call to Graph to get team is not working
-            var agendaItems = _agendaItemRepository.GetAllForMeeting(agendaItem.MeetingId);
-            var signedInUserId = _claimsPrincipalHelper.GetSignedInUserId();
-            var meeting = await _graphClient.GetMeetingForUser(agendaItem.MeetingId, signedInUserId);
+            //var agendaItems = _agendaItemRepository.GetAllForMeeting(agendaItem.MeetingId);
+            //var signedInUserId = _claimsPrincipalHelper.GetSignedInUserId();
+            //var meeting = await _graphClient.GetMeetingForUser(agendaItem.MeetingId, signedInUserId);
 
-            var sortedAgendaItems = agendaItems.OrderBy(i => i.Order).ToList();
-            var firstAgendaItem = sortedAgendaItems[0];
-            firstAgendaItem.StarTime = meeting.StartDate;
-            firstAgendaItem.EndTime = meeting.StartDate.Add(firstAgendaItem.Duration);
+            //var sortedAgendaItems = agendaItems.OrderBy(i => i.Order).ToList();
+            //var firstAgendaItem = sortedAgendaItems[0];
+            //firstAgendaItem.StarTime = meeting.StartDate;
+            //firstAgendaItem.EndTime = meeting.StartDate.Add(firstAgendaItem.Duration);
 
-            for (var i = 1; i < sortedAgendaItems.Count; i++)
-            {
-                var currentAgendaItem = sortedAgendaItems[i];
-                currentAgendaItem.StarTime = sortedAgendaItems[i - 1].EndTime;
-                currentAgendaItem.EndTime = currentAgendaItem.StarTime.Add(currentAgendaItem.Duration);
-            }
+            //for (var i = 1; i < sortedAgendaItems.Count; i++)
+            //{
+            //    var currentAgendaItem = sortedAgendaItems[i];
+            //    currentAgendaItem.StarTime = sortedAgendaItems[i - 1].EndTime;
+            //    currentAgendaItem.EndTime = currentAgendaItem.StarTime.Add(currentAgendaItem.Duration);
+            //}
 
             return new OkResult();
         }
