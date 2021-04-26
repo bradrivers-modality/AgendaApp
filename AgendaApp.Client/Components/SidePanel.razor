@@ -1,5 +1,10 @@
-﻿<AgendaItemList/>
+﻿@using AgendaApp.Models
+<AgendaItemList MicrosoftTeamsContext="@MicrosoftTeamsContext"/>
 
-@code {
+@code
+{
+
+    [Parameter]
+    public MicrosoftTeamsContext MicrosoftTeamsContext { get; set; }
 
 }

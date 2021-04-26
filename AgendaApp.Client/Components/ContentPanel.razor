@@ -1,7 +1,14 @@
-﻿<AgendaItemForm />
-<AgendaItemList />
+﻿@using AgendaApp.Models
 
+<AgendaItemList  MicrosoftTeamsContext="@MicrosoftTeamsContext" @bind-AgendaItemCount="_agendaItemCount"/>
+<AgendaItemForm  MicrosoftTeamsContext="@MicrosoftTeamsContext" AgendaItemCount="@_agendaItemCount" />
 
-@code {
+@code
+{
+
+    private short _agendaItemCount;
+
+    [Parameter]
+    public MicrosoftTeamsContext MicrosoftTeamsContext { get; set; }
 
 }

@@ -13,11 +13,11 @@
     }
     else if (_microsoftTeamsContext.FrameContext.Equals("sidePanel"))
     {
-        <SidePanel/>
+        <SidePanel  MicrosoftTeamsContext="@_microsoftTeamsContext"/>
     }
     else
     {
-        <ContentPanel/>
+        <ContentPanel MicrosoftTeamsContext="@_microsoftTeamsContext"/>
     }
 }
 
@@ -33,7 +33,7 @@
         _microsoftTeamsContext = await JS.InvokeAsync<MicrosoftTeamsContext>("GetContext");
 
         var microsoftTeamsContext = new StringBuilder();
-        microsoftTeamsContext.AppendLine("microsoftTeamsContext {");
+        microsoftTeamsContext.AppendLine("microsoftTeamsContext:");
         foreach (PropertyDescriptor descriptor in TypeDescriptor.GetProperties(_microsoftTeamsContext))
         {
             microsoftTeamsContext.AppendLine($"\t {descriptor.Name}: {descriptor.GetValue(_microsoftTeamsContext)}");

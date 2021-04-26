@@ -7,12 +7,14 @@ namespace AgendaApp.Models
     {
         [Required]
         public string Name { get; set; }
+        public string Description { get; set; }
+        [Required]
+        public string UserName { get; set; }
         [Required]
         public string MeetingId { get; set; }
         [Required]
         public short Order { get; set; }
         [Required]
         public TimeSpan Duration { get; set; }
-        public string UserName { get; set; }
     }
 }
