@@ -1,6 +1,4 @@
-﻿@using AgendaApp.Models
-@using Flurl.Http
-@inject Blazored.LocalStorage.ILocalStorageService LocalStorage
+﻿@inject Blazored.LocalStorage.ILocalStorageService LocalStorage
 
 <div class="list-group">
     @{
@@ -11,7 +9,7 @@
         else if(_agendaItems.Count == 0)
         {
             <div class="card">
-                <h5 class="card-header">No agenda items</h5>
+                <h5 class="card-body">No agenda items</h5>
             </div>
         }
         else
@@ -35,39 +33,3 @@
     }
 
 </div>
-
-@code {
-    private List<AgendaItem> _agendaItems;
-
-    [Parameter]
-    public MicrosoftTeamsContext MicrosoftTeamsContext { get; set; }
-
-    [Parameter]
-    public short AgendaItemCount { get; set; }
-
-    [Parameter]
-    public EventCallback<short> AgendaItemCountChanged { get; set; }
-
-    private Task OnAgendaItemCountChangedAsync()
-    {
-        Console.WriteLine("AgendaItemCount changed: " + AgendaItemCount);
-        return AgendaItemCountChanged.InvokeAsync(AgendaItemCount);
-    }
-
-    protected override async Task OnInitializedAsync()
-    {
-        var token = await LocalStorage.GetItemAsync<string>("access_token");
-        var result = await $"http://localhost:3978/api/AgendaItem/GetAllForMeeting?meetingId={MicrosoftTeamsContext.MeetingId}"
-            .WithOAuthBearerToken(token)
-            .GetJsonAsync<List<AgendaItem>>();
-
-        _agendaItems = result.OrderBy(i => i.Order).ToList();
-        Console.WriteLine("_agendaItems.Count: " + _agendaItems.Count);
-
-        AgendaItemCount = Convert.ToInt16(_agendaItems.Count);
-        await OnAgendaItemCountChangedAsync();
-
-        await base.OnInitializedAsync();
-    }
-
-}

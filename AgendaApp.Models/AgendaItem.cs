@@ -16,5 +16,7 @@ namespace AgendaApp.Models
         public short Order { get; set; }
         [Required]
         public TimeSpan Duration { get; set; }
+        public DateTime StarTime { get; set; }
+        public DateTime EndTime { get; set; }
     }
 }

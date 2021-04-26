@@ -15,7 +15,7 @@ namespace AgendaApp.Graph
         {
             _authenticationClient = authenticationClient ?? throw new ArgumentNullException(nameof(authenticationClient));
         }
-
+        
         public async Task<User> GetUserByIdAsync(Guid userId)
         {
             var token = await _authenticationClient.GetApplicationGraphTokenAsync();
@@ -27,6 +27,28 @@ namespace AgendaApp.Graph
                     .GetJsonAsync<GraphResponse<User>>();
 
                 return users.Entities.FirstOrDefault();
+            }
+            catch (FlurlHttpException ex)
+            {
+                Console.WriteLine(ex);
+                throw;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+        }
+
+        public async Task<Meeting> GetMeetingForUser(string meetingId, Guid userId)
+        {
+            var token = await _authenticationClient.GetApplicationGraphTokenAsync();
+
+            try
+            {
+                return await $"https://graph.microsoft.com/beta/users/{userId}/onlineMeetings/{meetingId}"
+                    .WithOAuthBearerToken(token)
+                    .GetJsonAsync<Meeting>();
             }
             catch (FlurlHttpException ex)
             {

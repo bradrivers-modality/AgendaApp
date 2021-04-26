@@ -51,6 +51,7 @@ namespace AgendaApp.Bot
             services.AddSingleton<IBotFrameworkHttpAdapter, AdapterWithErrorHandler>();
             services.AddTransient<IBot, Bots.AgendaBot>();
 
+            services.AddSingleton<IClaimsPrincipalHelper, ClaimsPrincipalHelper>();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddSingleton<IGraphClient, GraphClient>();
             services.AddSingleton<IAuthenticationClient, AuthenticationClient>();
